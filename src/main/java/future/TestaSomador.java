@@ -41,18 +41,23 @@ public class TestaSomador {
         System.out.println(soma1 + soma2 + soma3);
         System.out.println("Tempo convencional: " + (System.currentTimeMillis() - inicio));
 
+        
+        
+        
+        // soma paralela
         inicio = System.currentTimeMillis();
         Somador s1 = new Somador(v1);
         Somador s2 = new Somador(v2);
         Somador s3 = new Somador(v3); 
-        Future<Integer> futuro = pool.submit(s1);
+        Future<Integer> futuro = pool.submit(s1);  // inicia execução 
         
-        Future<Integer> futuro2 = pool.submit(s2);       
+        Future<Integer> futuro2 = pool.submit(s2);   
         
         Future<Integer> futuro3 = pool.submit(s3);
         
         System.out.println(futuro.get() + futuro2.get() + futuro3.get()); 
         pool.shutdown();
+        
         System.out.println("Tempo paralelo: " + (System.currentTimeMillis() - inicio));
 
     }
